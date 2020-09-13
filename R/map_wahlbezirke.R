@@ -120,8 +120,9 @@ party_colors <- tribble(
   "GRÜNE", "green",
   "FDP", "yellow",
   "DIE LINKE", "purple",
-  "AfD", "brown"
-)
+  #"AfD", rgb(0, 158, 224, maxColorValue = 255)
+) %>% 
+  mutate(party = factor(party, levels = c("CDU", "SPD", "GRÜNE", "FDP", "DIE LINKE")))
 
 
 get_leading_party <- function(df) {
@@ -211,7 +212,7 @@ m <- leaflet(options = leafletOptions(worldCopyJump = FALSE, dragging = TRUE)) %
   # legend with party colors
   addLegend(pal = colorFactor(palette = party_colors$color, 
                               domain = party_colors$party, 
-                              levels = c("CDU", "SPD", "GRÜNE", "FDP", "DIE LINKE", "AfD")), 
+                              levels = c("CDU", "SPD", "GRÜNE", "FDP", "DIE LINKE")), 
             values = ~party, data = party_colors,
             title = "Partei",
             position = "bottomright")
@@ -222,19 +223,19 @@ m <- m %>%
               # fillColor = ~colorNumeric("PiYG", turnout)(turnout),
               fillColor = ~color,
               label = ~label,
-              color = "grey5", 
+              color = "#777777", 
               weight = 0.5,
               group = "Ratswahl") %>% 
   addPolygons(data = shapes_trans_elect_labels$bezirkswahl,
               fillColor = ~color,
               label = ~label,
-              color = "grey5", 
+              color = "#777777", 
               weight = 0.5,
               group = "Bezirksvertreterwahl") %>% 
   addPolygons(data = shapes_trans_elect_labels$obwahl, 
               fillColor = ~colorNumeric("PiYG", turnout)(turnout),
               label = ~label,
-              color = "grey5", 
+              color = "#777777", 
               weight = 0.5,
               group = "Oberbürgermeisterwahl") %>% 
   addLayersControl(baseGroups = c("Ratswahl", "Bezirksvertreterwahl", "Oberbürgermeisterwahl"),
