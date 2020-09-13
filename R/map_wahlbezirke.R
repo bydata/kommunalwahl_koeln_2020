@@ -204,7 +204,7 @@ m <- leaflet(options = leafletOptions(worldCopyJump = FALSE, dragging = TRUE)) %
                    group = "CartoDB") %>%
   setView(lng = coords_cathedral[1, ]$lon,
           lat = coords_cathedral[1, ]$lat,
-          zoom = 11.5) %>%
+          zoom = 11) %>%
   # limit map bounds to Cologne area
   setMaxBounds(lng1 = coords_cgn[1,1], lng2 = coords_cgn[1,2], lat1 = coords_cgn[2,1], lat2 = coords_cgn[2,2]) 
 #%>% 
