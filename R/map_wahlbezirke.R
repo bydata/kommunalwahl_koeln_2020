@@ -206,9 +206,10 @@ m <- leaflet(options = leafletOptions(worldCopyJump = FALSE, dragging = TRUE)) %
           lat = coords_cathedral[1, ]$lat,
           zoom = 11.5) %>%
   # limit map bounds to Cologne area
-  setMaxBounds(lng1 = coords_cgn[1,1], lng2 = coords_cgn[1,2], lat1 = coords_cgn[2,1], lat2 = coords_cgn[2,2]) %>% 
+  setMaxBounds(lng1 = coords_cgn[1,1], lng2 = coords_cgn[1,2], lat1 = coords_cgn[2,1], lat2 = coords_cgn[2,2]) 
+#%>% 
   # legend with party colors
-  addLegend(pal = ~party_colors$color, values = ~party_colors$party)
+ # addLegend(pal = ~party_colors$color, values = ~party_colors$party)
   
 
 m <- m %>% 
