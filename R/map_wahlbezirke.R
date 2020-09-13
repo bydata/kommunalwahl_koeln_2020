@@ -5,8 +5,7 @@ library(leaflet.extras)
 library(lubridate)
 library(tictoc)
 library(sf)
-# library(rgdal)
-# library(raster)
+
 
 # Area of Cologne
 coords_cgn <- getbb("Koeln, Germany")
@@ -200,12 +199,16 @@ shapes_trans_elect_labels$obwahl <- shapes_trans_elect$obwahl %>%
 # create map
 m <- leaflet(options = leafletOptions(worldCopyJump = FALSE, dragging = TRUE)) %>%
   addTiles() %>% 
-  addProviderTiles(options = tileOptions(noWrap = TRUE), provider = "CartoDB", group = "CartoDB") %>%
+  addProviderTiles(options = tileOptions(noWrap = TRUE), 
+                   provider = "CartoDB", 
+                   group = "CartoDB") %>%
   setView(lng = coords_cathedral[1, ]$lon,
           lat = coords_cathedral[1, ]$lat,
-          zoom = 11) %>%
+          zoom = 11.5) %>%
   # limit map bounds to Cologne area
-  setMaxBounds(lng1 = coords_cgn[1,1], lng2 = coords_cgn[1,2], lat1 = coords_cgn[2,1], lat2 = coords_cgn[2,2])
+  setMaxBounds(lng1 = coords_cgn[1,1], lng2 = coords_cgn[1,2], lat1 = coords_cgn[2,1], lat2 = coords_cgn[2,2]) %>% 
+  # legend with party colors
+  addLegend(pal = ~party_colors$color, values = ~party_colors$party)
   
 
 m <- m %>% 

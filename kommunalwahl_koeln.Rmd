@@ -1,6 +1,5 @@
 ---
 title: "Ergebnisse der Kommunalwahl in Köln am 13.09.2020"
-author: "Ansgar Wolsing"
 output: html_document
 ---
 
@@ -9,8 +8,11 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-![](input/icon_leaflet_choose_map.png)
-Zum Wechseln zwischen Rats-, Bezirksvertretungs- und Oberbürgermeisterwahl auf das Symbol oben rechts in der Karte klicken. 
+Am 13.09.2020 wurden der Rat der Stadt Köln, die Bezirksvertretungen und die Oberbürgermeisterin gewählt.
+
+Die interaktive Karte zeigt die (Zwischen-)Ergebnisse der Kommunalwahlen.
+
+Zum Wechseln zwischen Rats-, Bezirksvertretungs- und Oberbürgermeisterwahl auf das Symbol oben rechts in der Karte klicken. ![](input/icon_leaflet_choose_map.png){width=33px, height=33px} 
 
 
 ```{r message=FALSE, warning=FALSE}
@@ -19,9 +21,14 @@ source("R/map_wahlbezirke.R", encoding = "UTF-8")
 ```
 
 
-
-
-```{r fig.width=12}
+```{r fig.width=10, fig.height=12}
 m
 ```
 
+
+
+
+### Quellen
+
+Geo-Daten Wahlbezirke: https://www.offenedaten-koeln.de/
+Wahlergebnisse: Stadt Köln (https://wahlen.stadt-koeln.de/)
