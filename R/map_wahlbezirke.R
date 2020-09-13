@@ -93,15 +93,6 @@ create_labels_2 <- function(NUMMER, NAME, counted, stimmbezirke, turnout,
 # scrape election results
 source("R/scrape_results.R")
 
-# join election results with shapes
-# shapes_trans_elect <- shapes_trans %>% 
-#   left_join(results$ratswahl, by = "NUMMER", suffix = c("", ".y")) %>% 
-#   select(-NAME.y) %>% 
-#   left_join(results$bezirkswahl, by = "NUMMER", suffix = c(".rat", ".bezirk")) %>% 
-#   left_join(results$obwahl, by = "NUMMER", suffix = c("", "ob")) %>% 
-#   mutate(NAME = NAME.rat) %>% 
-#   select(-NAME.rat, -NAME.bezirk)
-
 
 
 shapes_trans_elect <- map(results, 
@@ -146,25 +137,6 @@ get_leading_party <- function(df) {
 shapes_trans_elect <- 
   map(shapes_trans_elect, get_leading_party)
 
-
-
-# create labels
-# shapes_trans_elect_labels <- shapes_trans_elect %>% 
-#   mutate(label_ratswahl = pmap(list(
-#     NUMMER, NAME, counted.rat, stimmbezirke.rat, turnout.rat, CDU.rat, 
-#     SPD.rat, GRÜNE.rat, FDP.rat, `DIE LINKE.rat`, AfD.rat, "Ratswahl"
-#   ), create_labels_1),
-#   label_bezirkswahl = pmap(list(
-#     NUMMER, NAME, counted.bezirk, stimmbezirke.bezirk, turnout.bezirk, CDU.bezirk, 
-#     SPD.bezirk, GRÜNE.bezirk, FDP.bezirk, `DIE LINKE.bezirk`, AfD.bezirk, "Bezirksvertretungswahl"
-#   ), create_labels_1),
-#   label_obwahl = pmap(list(
-#     NUMMER, NAME, counted, stimmbezirke, turnout, 
-#     `Reker, Einzelbewerberin`,
-#     `Kossiski, SPD`, `Detjen, DIE LINKE`, `Cremer, AfD`,
-#     "Oberbürgermeisterwahl"
-#   ), create_labels_2),
-#   ) 
 
 shapes_trans_elect_labels <- list()
 
@@ -243,11 +215,18 @@ m <- m_base %>%
 
 m <- m %>% 
   # legend with party colors
-  addLegend(pal = colorFactor(palette = party_colors$color, 
-                              domain = party_colors$party, 
-                              levels = c("CDU", "SPD", "GRÜNE", "FDP", "DIE LINKE")), 
-            values = ~party, 
-            data = party_colors,
+  # addLegend(pal = colorFactor(palette = party_colors$color, 
+  #                             domain = party_colors$party, 
+  #                             levels = c("CDU", "SPD", "GRÜNE", "FDP", "DIE LINKE")), 
+  #           values = ~party, 
+  #           data = party_colors,
+  #           title = "Partei",
+  #           group = c("Ratswahl", "Bezirksvertretungswahl"),
+  #           position = "bottomright") 
+  addLegend(pal = colorFactor(palette = c("black", "red", "green"), 
+                              domain = c("CDU", "SPD", "GRÜNE"), 
+                              levels = c("CDU", "SPD", "GRÜNE")), 
+            values = c("CDU", "SPD", "GRÜNE"), 
             title = "Partei",
             group = c("Ratswahl", "Bezirksvertretungswahl"),
             position = "bottomright") 
