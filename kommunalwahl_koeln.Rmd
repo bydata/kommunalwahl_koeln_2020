@@ -1,0 +1,27 @@
+---
+title: "Ergebnisse der Kommunalwahl in Köln am 13.09.2020"
+author: "Ansgar Wolsing"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+![](input/icon_leaflet_choose_map.png)
+Zum Wechseln zwischen Rats-, Bezirksvertretungs- und Oberbürgermeisterwahl auf das Symbol oben rechts in der Karte klicken. 
+
+
+```{r message=FALSE, warning=FALSE}
+# load election results and create map
+source("R/map_wahlbezirke.R", encoding = "UTF-8")
+```
+
+
+
+
+```{r fig.width=12}
+m
+```
+
