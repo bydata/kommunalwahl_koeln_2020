@@ -207,10 +207,14 @@ m <- leaflet(options = leafletOptions(worldCopyJump = FALSE, dragging = TRUE)) %
           lat = coords_cathedral[1, ]$lat,
           zoom = 11) %>%
   # limit map bounds to Cologne area
-  setMaxBounds(lng1 = coords_cgn[1,1], lng2 = coords_cgn[1,2], lat1 = coords_cgn[2,1], lat2 = coords_cgn[2,2]) 
-#%>% 
+  setMaxBounds(lng1 = coords_cgn[1,1], lng2 = coords_cgn[1,2], lat1 = coords_cgn[2,1], lat2 = coords_cgn[2,2]) %>% 
   # legend with party colors
- # addLegend(pal = ~party_colors$color, values = ~party_colors$party)
+  addLegend(pal = colorFactor(palette = party_colors$color, 
+                              domain = party_colors$party, 
+                              levels = c("CDU", "SPD", "GRÜNE", "FDP", "DIE LINKE", "AfD")), 
+            values = ~party, data = party_colors,
+            title = "Partei",
+            position = "bottomright")
   
 
 m <- m %>% 
@@ -218,20 +222,19 @@ m <- m %>%
               # fillColor = ~colorNumeric("PiYG", turnout)(turnout),
               fillColor = ~color,
               label = ~label,
-              color = "red", 
+              color = "grey5", 
               weight = 0.5,
               group = "Ratswahl") %>% 
   addPolygons(data = shapes_trans_elect_labels$bezirkswahl,
-              # fillColor = ~colorNumeric("PiYG", turnout)(turnout),
               fillColor = ~color,
               label = ~label,
-              color = "blue", 
+              color = "grey5", 
               weight = 0.5,
               group = "Bezirksvertreterwahl") %>% 
   addPolygons(data = shapes_trans_elect_labels$obwahl, 
               fillColor = ~colorNumeric("PiYG", turnout)(turnout),
               label = ~label,
-              color = "green", 
+              color = "grey5", 
               weight = 0.5,
               group = "Oberbürgermeisterwahl") %>% 
   addLayersControl(baseGroups = c("Ratswahl", "Bezirksvertreterwahl", "Oberbürgermeisterwahl"),
