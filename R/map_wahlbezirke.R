@@ -50,11 +50,11 @@ shapes_trans <- st_transform(shapes, "+proj=longlat")
 create_labels_1 <- function(NUMMER, NAME, counted, stimmbezirke, turnout, CDU, SPD, GRÜNE, FDP, LINKE, AfD, wahl) {
   htmltools::HTML(
     glue::glue(
-      "<b>{wahl}</b><br>
-        <b>Wahlbezirk {NUMMER}, {NAME}</b><br>
+      "<b>Wahlbezirk {NUMMER}, {NAME}</b><br>
         {counted} von {stimmbezirke} Stimmbezirken ausgezählt<br>
         <br>
         <b>Wahlbeteiligung</b>: {turnout} %<br>
+        <br>
         <b>CDU</b>: {CDU} %<br>
         <b>SPD</b>: {SPD} %<br>
         <b>Grüne</b>: {GRÜNE} %<br>
@@ -76,11 +76,11 @@ create_labels_2 <- function(NUMMER, NAME, counted, stimmbezirke, turnout,
                             ) {
   htmltools::HTML(
     glue::glue(
-      "<b>{wahl}</b><br>
-        <b>Wahlbezirk {NUMMER}, {NAME}</b><br>
+      "<b>Wahlbezirk {NUMMER}, {NAME}</b><br>
         {counted} von {stimmbezirke} Stimmbezirken ausgezählt<br>
         <br>
         <b>Wahlbeteiligung</b>: {turnout} %<br>
+        <br>
         <b>Henriette Reker, Einzelbewerberin</b>: {`Reker, Einzelbewerberin`} %<br>
         <b>Andreas Kossiski, SPD</b>: {`Kossiski, SPD`} %<br>
         <b>J&ouml;rg Detjen</b>: {`Detjen, DIE LINKE`} %<br>
