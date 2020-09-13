@@ -171,8 +171,9 @@ shapes_trans_elect_labels$ratswahl <- shapes_trans_elect$ratswahl %>%
   mutate(label = pmap(list(
     NUMMER, NAME, counted, stimmbezirke, turnout, CDU, 
     SPD, GRÜNE, 
-    FDP = NA, 
-    `DIE LINKE`, AfD, 
+    FDP, 
+    `DIE LINKE`, 
+    AfD = NA, 
     "Ratswahl"
   ), create_labels_1))
   
@@ -233,6 +234,7 @@ m <- m %>%
               color = "green", 
               weight = 0.5,
               group = "Oberbürgermeisterwahl") %>% 
-  addLayersControl(baseGroups = c("Ratswahl", "Bezirksvertreterwahl", "Oberbürgermeisterwahl"))
+  addLayersControl(baseGroups = c("Ratswahl", "Bezirksvertreterwahl", "Oberbürgermeisterwahl"),
+                   options = layersControlOptions(collapsed = FALSE))
   
 # htmlwidgets::saveWidget(m, "output/map_kommunalwahl.html")

@@ -18,6 +18,8 @@ Die interaktive Karte zeigt die (Zwischen-)Ergebnisse der Kommunalwahlen in den 
 
 In den Karten zur Ratswahl gibt die Färbung der Wahlbezirke wieder, welche Partei die meisten Stimmen erreicht hat (ggf. Zwischenstand).
 
+(Stand: `r  format(Sys.time(), "%d.%m.%Y, %H:%M")` Uhr)
+
 ```{r message=FALSE, warning=FALSE}
 # load election results and create map
 source("R/map_wahlbezirke.R", encoding = "UTF-8")
