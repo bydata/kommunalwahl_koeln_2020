@@ -32,10 +32,15 @@ source("R/map_wahlbezirke.R", encoding = "UTF-8")
 m
 ```
 
-
-
+<br>
+<br>
+<br>
 
 ### Quellen
 
 * Geo-Daten Wahlbezirke: https://www.offenedaten-koeln.de/
 * Wahlergebnisse: Stadt Köln (https://wahlen.stadt-koeln.de/)
+
+
+<br>
+<br>

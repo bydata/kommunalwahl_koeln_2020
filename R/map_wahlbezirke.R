@@ -198,8 +198,8 @@ shapes_trans_elect_labels$obwahl <- shapes_trans_elect$obwahl %>%
 #glimpse(shapes_trans_elect_labels$ratswahl)
 
 
-# create map
-m <- leaflet(options = leafletOptions(worldCopyJump = FALSE, dragging = TRUE)) %>%
+# create base map
+m_base <- leaflet(options = leafletOptions(worldCopyJump = FALSE, dragging = TRUE)) %>%
   addTiles() %>% 
   addProviderTiles(options = tileOptions(noWrap = TRUE), 
                    provider = "CartoDB", 
@@ -208,17 +208,9 @@ m <- leaflet(options = leafletOptions(worldCopyJump = FALSE, dragging = TRUE)) %
           lat = coords_cathedral[1, ]$lat,
           zoom = 11) %>%
   # limit map bounds to Cologne area
-  setMaxBounds(lng1 = coords_cgn[1,1], lng2 = coords_cgn[1,2], lat1 = coords_cgn[2,1], lat2 = coords_cgn[2,2]) %>% 
-  # legend with party colors
-  addLegend(pal = colorFactor(palette = party_colors$color, 
-                              domain = party_colors$party, 
-                              levels = c("CDU", "SPD", "GRÜNE", "FDP", "DIE LINKE")), 
-            values = ~party, data = party_colors,
-            title = "Partei",
-            position = "bottomright")
-  
+  setMaxBounds(lng1 = coords_cgn[1,1], lng2 = coords_cgn[1,2], lat1 = coords_cgn[2,1], lat2 = coords_cgn[2,2])
 
-m <- m %>% 
+m <- m_base %>% 
   addPolygons(data = shapes_trans_elect_labels$ratswahl,
               # fillColor = ~colorNumeric("PiYG", turnout)(turnout),
               fillColor = ~color,
@@ -231,14 +223,42 @@ m <- m %>%
               label = ~label,
               color = "#777777", 
               weight = 0.5,
-              group = "Bezirksvertreterwahl") %>% 
+              group = "Bezirksvertretungswahl") %>% 
   addPolygons(data = shapes_trans_elect_labels$obwahl, 
               fillColor = ~colorNumeric("PiYG", turnout)(turnout),
               label = ~label,
               color = "#777777", 
               weight = 0.5,
               group = "Oberbürgermeisterwahl") %>% 
-  addLayersControl(baseGroups = c("Ratswahl", "Bezirksvertreterwahl", "Oberbürgermeisterwahl"),
+  addPolygons(data = shapes_trans_elect_labels$ratswahl, 
+              fillColor = ~colorNumeric("Greys", turnout)(turnout),
+              label = ~label,
+              color = "#777777", 
+              weight = 0.5,
+              group = "Wahlbeteiligung") %>% 
+  addLayersControl(baseGroups = c("Ratswahl", "Bezirksvertretungswahl", "Oberbürgermeisterwahl"),
+                   overlayGroups = c("Wahlbeteiligung"),
                    options = layersControlOptions(collapsed = FALSE))
   
+
+m <- m %>% 
+  # legend with party colors
+  addLegend(pal = colorFactor(palette = party_colors$color, 
+                              domain = party_colors$party, 
+                              levels = c("CDU", "SPD", "GRÜNE", "FDP", "DIE LINKE")), 
+            values = ~party, 
+            data = party_colors,
+            title = "Partei",
+            group = c("Ratswahl", "Bezirksvertretungswahl"),
+            position = "bottomright") 
+# %>% 
+#   addLegend(pal = ~colorNumeric("Greys", turnout)(turnout), 
+#             values = ~turnout, data = shapes_trans_elect_labels$ratswahl,
+#             title = "Wahlbeteiligung",
+#             group = "Wahlbeteiligung",
+#             position = "bottomright")
+
+
+
 # htmlwidgets::saveWidget(m, "output/map_kommunalwahl.html")
+
