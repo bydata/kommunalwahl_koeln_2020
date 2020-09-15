@@ -241,3 +241,9 @@ m <- m %>%
 
 # htmlwidgets::saveWidget(m, "output/map_kommunalwahl.html")
 
+# library(leaflet.minicharts)
+# 
+# m %>% 
+#   addMinicharts(lat = 51, lng = 6.5,
+#                   chartdata = shapes_trans_elect_labels$ratswahl %>% 
+#                   select(CDU, SPD, `GRÜNE`))

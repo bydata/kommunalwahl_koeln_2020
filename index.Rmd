@@ -17,12 +17,9 @@ knitr::opts_chunk$set(echo = FALSE)
 
 Am 13.09.2020 wurden der Rat der Stadt Köln, die Bezirksvertretungen und die Oberbürgermeisterin gewählt.
 
-Die interaktive Karte zeigt die (Zwischen-)Ergebnisse der Kommunalwahlen in den Wahlbezirken. Im Menü oben rechts kann zwischen zwischen Rats-, Bezirksvertretungs- und Oberbürgermeisterwahl gewechselt werden.
+Die interaktive Karte zeigt die Ergebnisse der Kommunalwahlen in den Wahlbezirken. Im Menü oben rechts kann zwischen zwischen Rats-, Bezirksvertretungs- und Oberbürgermeisterwahl gewechselt werden.
 
-<!-- Zum Wechseln zwischen Rats-, Bezirksvertretungs- und Oberbürgermeisterwahl auf das Symbol oben rechts in der Karte klicken.
-![](input/icon_leaflet_choose_map.png){width=33px, height=33px} -->
-
-In den Karten zur Ratswahl gibt die Färbung der Wahlbezirke wieder, welche Partei die meisten Stimmen erreicht hat (ggf. Zwischenstand).
+In den Karten zur Ratswahl gibt die Färbung der Wahlbezirke wieder, welche Partei die meisten Stimmen erreicht hat.
 
 (Stand: `r  format(Sys.time(), "%d.%m.%Y, %H:%M")` Uhr)
 
