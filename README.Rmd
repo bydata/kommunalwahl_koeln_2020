@@ -1,9 +1,7 @@
 ---
 title: "Kommunalwahl K&ouml;ln mit Leaflet"
-output:
-  github_document:
-    includes:
-      before_body: index.html
-  
+output: github_document
 ---
+
+![Screenshot der Karte](screenshot_map.png)
 
