@@ -21,7 +21,7 @@ Die interaktive Karte zeigt die Ergebnisse der Kommunalwahlen in den Wahlbezirke
 
 In den Karten zur Ratswahl gibt die Färbung der Wahlbezirke wieder, welche Partei die meisten Stimmen erreicht hat.
 
-(Stand: `r  format(Sys.time(), "%d.%m.%Y, %H:%M")` Uhr)
+<!-- (Stand: `r  format(Sys.time(), "%d.%m.%Y, %H:%M")` Uhr) -->
 
 ```{r message=FALSE, warning=FALSE}
 # load election results and create map

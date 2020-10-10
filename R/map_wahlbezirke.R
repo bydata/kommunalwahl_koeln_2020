@@ -102,10 +102,10 @@ party_colors <- tribble(
   "SPD", "#E3000F",
   "GRÜNE", rgb(100, 161, 45, maxColorValue = 255),
   "FDP", rgb(245, 228, 21, maxColorValue = 255),
-  "DIE LINKE", "purple",
+  "DIE LINKE", "#96273c",
   "AfD", rgb(0, 158, 224, maxColorValue = 255),
-  "Volt" = "grey30",
-  "Sonstige" = "grey10"
+  "Volt" = "purple",
+  "Sonstige" = "grey50"
 ) %>% 
   mutate(party = factor(party, levels = c("CDU", "SPD", "GRÜNE", "FDP", "DIE LINKE", "AfD", "Volt", "Sonstige")))
 
@@ -113,11 +113,11 @@ party_color_pal <- c(
   "SPD" = "#E3000F",
   "CDU" = "black",
   "GRUENE" = rgb(100, 161, 45, maxColorValue = 255),
-  "DIE LINKE" = "purple",
+  "DIE LINKE" = "#96273c",
   "FDP"  = rgb(245, 228, 21, maxColorValue = 255),
   "AfD" = rgb(0, 158, 224, maxColorValue = 255),
-  "Volt" = "grey30",
-  "Sonstige" = "grey10"
+  "Volt" = "purple",
+  "Sonstige" = "grey70"
 )
 
 
@@ -291,6 +291,13 @@ m <- m_base %>%
               color = "#777777", 
               weight = 0.5,
               group = "Oberbürgermeisterwahl") %>% 
+  # Turnout
+  addPolygons(data = shapes_trans_elect_labels$ratswahl, 
+              fillColor = ~colorNumeric("Greys", turnout)(turnout),
+              label = ~label,
+              color = "#777777", 
+              weight = 0.5,
+              group = "Wahlbeteiligung") %>% 
   addLayersControl(baseGroups = c("Ratswahl", "Bezirksvertretungswahl", "Oberbürgermeisterwahl"),
                    overlayGroups = c("Wahlbeteiligung"),
                    options = layersControlOptions(collapsed = FALSE))
