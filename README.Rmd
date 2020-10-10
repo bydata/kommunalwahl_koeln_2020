@@ -1,0 +1,9 @@
+---
+title: "Kommunalwahl K&ouml;ln mit Leaflet"
+output:
+  github_document:
+    includes:
+      before_body: index.html
+  
+---
+
